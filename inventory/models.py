@@ -47,7 +47,11 @@ class ItemRequirement(models.Model):
     product = models.ForeignKey(Product)
     item = models.ForeignKey(Item)
     number_required = models.IntegerField(default = 0)
-    
+   
+    def number_stocked(self):
+        if self.item == None: return "undefined"
+        return self.item.supply
+
     def __unicode__(self):
         return self.item.name
 
